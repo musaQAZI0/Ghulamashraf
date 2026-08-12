@@ -4,6 +4,10 @@ import { ArticleCard } from "@/components/cards/ArticleCard";
 import { SiteFrame } from "@/components/layout/SiteFrame";
 import { articleCategories, featuredArticles, latestArticles } from "@/lib/site-content";
 
+function categoryHref(category: string) {
+  return category === "All Articles" ? "/articles" : `/articles/${category.toLowerCase().replaceAll(" ", "-")}`;
+}
+
 export default function ArticlesPage() {
   return (
     <SiteFrame>
@@ -17,7 +21,7 @@ export default function ArticlesPage() {
       <section className="archive-layout">
         <aside className="filter-panel" aria-label="Article categories">
           {articleCategories.map((category) => (
-            <Link href="/articles" key={category}>
+            <Link href={categoryHref(category)} key={category}>
               {category}
             </Link>
           ))}

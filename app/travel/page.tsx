@@ -14,7 +14,7 @@ export default function TravelPage() {
         {["Places", "Culture", "Leisure", "Reflections", "Photos", "Travel Notes"].map((item) => (
           <article className="topic-card" key={item}>
             <span>{item}</span>
-            <p>Editorial collection prepared for future entries and visual stories.</p>
+            <p>Personal observations shaped by place, memory, culture, and quiet discovery.</p>
           </article>
         ))}
       </section>

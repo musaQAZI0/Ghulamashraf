@@ -7,7 +7,7 @@ export default function MediaPage() {
       <section className="page-hero">
         <span className="eyebrow">Media</span>
         <h1>Interviews, video reflections, press notes, and photos.</h1>
-        <p>A premium media index ready for appearances, talks, interviews, and image galleries.</p>
+        <p>A curated index for public talks, interviews, reflections, press appearances, and visual moments.</p>
       </section>
       <section className="media-grid">
         {["Featured Interview", "Video Reflection", "Press Appearance"].map((item) => (
@@ -16,7 +16,7 @@ export default function MediaPage() {
               <Play size={18} />
             </button>
             <h3>{item}</h3>
-            <p>Curated media item with description, date, and publication context.</p>
+            <p>Selected appearance with context, date, and a direct path to watch or read more.</p>
           </article>
         ))}
       </section>
