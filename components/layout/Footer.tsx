@@ -10,7 +10,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div>
-        <strong>GhulamAshraf.com</strong>
+        <strong>Ghulam <em>Ashraf</em></strong>
         <span>Essays, media, travel notes, and public reflection.</span>
       </div>
       <nav aria-label="Footer navigation">

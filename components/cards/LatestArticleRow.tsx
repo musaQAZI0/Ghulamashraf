@@ -9,7 +9,7 @@ type LatestArticleRowProps = {
 
 export function LatestArticleRow({ category, title, date }: LatestArticleRowProps) {
   return (
-    <Link href="/articles" className="latest-row">
+    <Link href="/articles/sample-article" className="latest-row">
       <span className="badge">{category}</span>
       <strong>{title}</strong>
       <small>

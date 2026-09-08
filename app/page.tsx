@@ -14,11 +14,11 @@ export default function Home() {
       <HeroSection />
       <IntroSection />
       <FeaturedArticlesSection />
+      <LatestAndMediaSection />
       <TopicsSection />
       <JourneySection />
-      <LatestAndMediaSection />
       <QuoteSection />
-      <ContactSection />
+      <ContactSection compact />
     </SiteFrame>
   );
 }

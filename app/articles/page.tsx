@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { ArticleCard } from "@/components/cards/ArticleCard";
+import { Search } from "lucide-react";
+import { ArchiveStory } from "@/components/cards/ArchiveStory";
 import { SiteFrame } from "@/components/layout/SiteFrame";
 import { articleCategories, featuredArticles, latestArticles } from "@/lib/site-content";
 
@@ -8,40 +9,66 @@ function categoryHref(category: string) {
   return category === "All Articles" ? "/articles" : `/articles/${category.toLowerCase().replaceAll(" ", "-")}`;
 }
 
-export default function ArticlesPage() {
+export const metadata: Metadata = {
+  title: "Articles",
+  description: "Essays on education, politics, technology, Islam, travel, and public life.",
+};
+
+type ArticlesPageProps = { searchParams: Promise<{ q?: string | string[] }> };
+
+export default async function ArticlesPage({ searchParams }: ArticlesPageProps) {
+  const rawQuery = (await searchParams).q;
+  const query = (Array.isArray(rawQuery) ? rawQuery[0] : rawQuery)?.trim() ?? "";
+  const needle = query.toLowerCase();
+  const allArticles = [
+    ...featuredArticles,
+    ...latestArticles.map((article) => ({ ...article, excerpt: "A considered note from the wider archive.", readingTime: "4 min read", tone: "plain" })),
+  ];
+  const visibleArticles = allArticles.filter((article) =>
+    !needle || [article.category, article.title, article.excerpt].some((value) => value.toLowerCase().includes(needle)),
+  );
+
   return (
     <SiteFrame>
-      <section className="page-hero">
-        <span className="eyebrow">Articles</span>
-        <h1>Readable, elegant long-form thinking.</h1>
-        <p>
-          A clean archive for essays across education, politics, technology, Islam, travel, and general reflection.
-        </p>
-      </section>
-      <section className="archive-layout">
-        <aside className="filter-panel" aria-label="Article categories">
+      <main className="articles-page">
+        <section className="articles-hero">
+          <div>
+            <span className="eyebrow"><i /> Essays & reflections</span>
+            <h1>Ideas for thoughtful <em>public life.</em></h1>
+            <p>Writing on education, faith, technology, culture, travel, and the responsibilities we share.</p>
+          </div>
+          <form className="articles-search" action="/articles" role="search">
+            <label htmlFor="article-search">Search the archive</label>
+            <div>
+              <Search aria-hidden="true" size={18} />
+              <input id="article-search" name="q" type="search" defaultValue={query} placeholder="Title, topic, or keyword" />
+              <button type="submit">Search</button>
+            </div>
+          </form>
+        </section>
+
+        <nav className="articles-category-nav" aria-label="Article categories">
           {articleCategories.map((category) => (
-            <Link href={categoryHref(category)} key={category}>
-              {category}
-            </Link>
+            <Link className={category === "All Articles" ? "active" : ""} href={categoryHref(category)} key={category}>{category}</Link>
           ))}
-        </aside>
-        <div className="archive-grid">
-          {featuredArticles.map((article, index) => (
-            <ArticleCard article={article} index={index} key={article.title} />
-          ))}
-          {latestArticles.map((article) => (
-            <Link className="archive-row-card" href="/articles/sample-article" key={article.title}>
-              <span className="badge">{article.category}</span>
-              <h3>{article.title}</h3>
-              <p>Publication date: {article.date}</p>
-              <strong>
-                Read article <ArrowRight size={15} />
-              </strong>
-            </Link>
-          ))}
-        </div>
-      </section>
+        </nav>
+
+        {query && <p className="articles-result-count">{visibleArticles.length} results for “{query}”</p>}
+
+        {visibleArticles.length > 0 ? (
+          <section className="articles-archive" aria-label="Article archive">
+            {visibleArticles.map((article, index) => (
+              <ArchiveStory article={article} featured={!query && index === 0} key={`${article.category}-${article.title}`} />
+            ))}
+          </section>
+        ) : (
+          <section className="archive-empty">
+            <h2>No articles found.</h2>
+            <p>Try a broader topic or return to the complete archive.</p>
+            <Link className="secondary-button" href="/articles">Clear search</Link>
+          </section>
+        )}
+      </main>
     </SiteFrame>
   );
 }

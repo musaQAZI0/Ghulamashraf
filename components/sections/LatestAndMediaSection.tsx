@@ -8,7 +8,7 @@ export function LatestAndMediaSection() {
     <section className="split-section" id="media">
       <div>
         <span className="eyebrow">Latest Articles</span>
-        <h2>Fresh writing for an engaged readership.</h2>
+        <h2>Recently published.</h2>
         <div className="latest-list">
           {latestArticles.map((article) => (
             <LatestArticleRow
@@ -22,11 +22,11 @@ export function LatestAndMediaSection() {
       </div>
       <div className="media-panel">
         <span className="eyebrow">Media</span>
-        <h2>Interviews, video reflections, press notes, and photos.</h2>
+        <h2>Conversations beyond the written page.</h2>
         <div className="media-actions">
-          <button className="media-button" aria-label="Play featured interview">
+          <Link className="media-button" href="/media" aria-label="Explore media archive">
             <Play size={18} />
-          </button>
+          </Link>
           <Link className="text-link" href="/media">
             Explore media <ArrowRight size={16} />
           </Link>

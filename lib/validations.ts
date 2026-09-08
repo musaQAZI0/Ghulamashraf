@@ -45,6 +45,13 @@ export function assertString(value: unknown, field: string, max = 255) {
   return value.trim();
 }
 
+function optionalString(value: unknown, field: string, max: number) {
+  if (value === undefined || value === null || value === "") return undefined;
+  if (typeof value !== "string") throw new Error(`${field} must be a string`);
+  if (value.length > max) throw new Error(`${field} must be ${max} characters or less`);
+  return value.trim() || undefined;
+}
+
 export function parseArticleInput(body: Record<string, unknown>): ArticleInput {
   const title = assertString(body.title, "Title");
   const content = assertString(body.content, "Content", 100_000);
@@ -54,17 +61,17 @@ export function parseArticleInput(body: Record<string, unknown>): ArticleInput {
     title,
     content,
     slug: typeof body.slug === "string" && body.slug.trim() ? slugify(body.slug) : slugify(title),
-    excerpt: typeof body.excerpt === "string" ? body.excerpt.trim() : undefined,
+    excerpt: optionalString(body.excerpt, "Excerpt", 2_000),
     status: status as ArticleStatus,
-    categoryId: typeof body.categoryId === "number" ? body.categoryId : undefined,
-    featuredImage: typeof body.featuredImage === "string" ? body.featuredImage.trim() : undefined,
-    seoTitle: typeof body.seoTitle === "string" ? body.seoTitle.trim() : undefined,
-    seoDescription: typeof body.seoDescription === "string" ? body.seoDescription.trim() : undefined,
+    categoryId: typeof body.categoryId === "number" && Number.isInteger(body.categoryId) && body.categoryId > 0 ? body.categoryId : undefined,
+    featuredImage: optionalString(body.featuredImage, "Featured image", 2_048),
+    seoTitle: optionalString(body.seoTitle, "SEO title", 255),
+    seoDescription: optionalString(body.seoDescription, "SEO description", 500),
   };
 }
 
 export function parseCategoryInput(body: Record<string, unknown>): CategoryInput {
-  const name = assertString(body.name, "Name");
+  const name = assertString(body.name, "Name", 100);
 
   return {
     name,

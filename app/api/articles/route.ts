@@ -3,16 +3,19 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { assertPermission } from "@/lib/permissions";
 import { parseArticleInput } from "@/lib/validations";
+import { errorResponse } from "@/lib/http";
 
 export async function GET() {
   const articles = await prisma.article.findMany({
+    where: {
+      status: "PUBLISHED",
+    },
     include: {
       category: true,
       author: {
         select: {
           id: true,
           name: true,
-          email: true,
           role: true,
         },
       },
@@ -43,6 +46,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(article, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid request" }, { status: 400 });
+    return errorResponse(error);
   }
 }

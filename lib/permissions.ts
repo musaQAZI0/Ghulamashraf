@@ -1,4 +1,5 @@
 import type { Role } from "@prisma/client";
+import { HttpError } from "@/lib/http";
 
 const permissionMap: Record<Role, string[]> = {
   ADMIN: ["admin:read", "article:write", "article:publish", "article:delete", "category:write", "media:write", "user:manage", "settings:write"],
@@ -12,6 +13,6 @@ export function can(role: Role, permission: string) {
 
 export function assertPermission(role: Role | undefined, permission: string) {
   if (!role || !can(role, permission)) {
-    throw new Error("Forbidden");
+    throw new HttpError("Forbidden", 403);
   }
 }

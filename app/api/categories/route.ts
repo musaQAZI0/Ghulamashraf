@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { assertPermission } from "@/lib/permissions";
 import { parseCategoryInput } from "@/lib/validations";
+import { errorResponse } from "@/lib/http";
 
 export async function GET() {
   const categories = await prisma.category.findMany({
@@ -27,6 +28,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(category, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid request" }, { status: 400 });
+    return errorResponse(error);
   }
 }

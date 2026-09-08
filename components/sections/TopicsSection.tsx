@@ -4,7 +4,7 @@ import { topics } from "@/lib/site-content";
 
 export function TopicsSection() {
   return (
-    <AnimatedSection eyebrow="Explore Topics" title="A considered archive across public life and personal reflection.">
+    <AnimatedSection eyebrow="Explore topics" title="Writing across the questions that shape public life.">
       <div className="topic-grid">
         {topics.map((topic) => (
           <TopicCard title={topic.title} description={topic.description} key={topic.title} />

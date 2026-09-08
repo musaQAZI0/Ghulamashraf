@@ -7,10 +7,11 @@ type SiteFrameProps = {
 
 export function SiteFrame({ children }: SiteFrameProps) {
   return (
-    <main className="site-shell">
+    <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Navbar />
-      {children}
+      <main id="main-content">{children}</main>
       <Footer />
-    </main>
+    </div>
   );
 }

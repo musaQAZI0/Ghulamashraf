@@ -16,6 +16,7 @@ export const featuredArticles = [
     excerpt:
       "A reflection on curiosity, discipline, and the teacher's role in shaping confident, ethical learners.",
     date: "Aug 8, 2026",
+    readingTime: "6 min read",
     tone: "scholar",
   },
   {
@@ -24,6 +25,7 @@ export const featuredArticles = [
     excerpt:
       "Why intelligent tools still require patient minds, civic responsibility, and moral clarity.",
     date: "Jul 28, 2026",
+    readingTime: "5 min read",
     tone: "signal",
   },
   {
@@ -32,6 +34,7 @@ export const featuredArticles = [
     excerpt:
       "On faith as a source of learning, service, humility, and contribution to society.",
     date: "Jul 14, 2026",
+    readingTime: "4 min read",
     tone: "faith",
   },
 ];

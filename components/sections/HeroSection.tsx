@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { fadeUp } from "@/components/ui/AnimatedSection";
 
@@ -10,19 +10,19 @@ export function HeroSection() {
   return (
     <section className="hero-section">
       <motion.div className="hero-copy" initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.8 }}>
-        <span className="eyebrow">Writer - Academic - Public Intellectual</span>
-        <h1>Dr. Ghulam Sarwar Ashraf</h1>
-        <p className="tagline">Learn - Inspire - Motivate - Contribute</p>
+        <span className="eyebrow"><i /> Writer · Academic · Public Intellectual</span>
+        <h1>Ideas in service of <em>society.</em></h1>
+        <p className="hero-name">Dr. Ghulam Sarwar Ashraf</p>
+        <p className="tagline">Learn · Inspire · Motivate · Contribute</p>
         <p className="hero-intro">
-          A premium personal publication platform for thoughtful essays, professional reflections, public commentary,
-          media work, and journeys across ideas, society, faith, and culture.
+          Scholarship, reflection, and public commentary on education, faith, culture, and the responsibilities we share.
         </p>
         <div className="cta-row">
           <Link className="primary-button" href="/articles">
             Read Articles <ArrowRight size={18} />
           </Link>
           <Link className="secondary-button" href="/about">
-            View Profile
+            View Profile <ArrowDownRight size={18} />
           </Link>
         </div>
       </motion.div>
@@ -39,10 +39,6 @@ export function HeroSection() {
           height={1400}
           priority
         />
-        <div className="hero-note">
-          <BookOpen size={18} />
-          <span>Essays rooted in scholarship, service, and moral imagination.</span>
-        </div>
       </motion.div>
     </section>
   );

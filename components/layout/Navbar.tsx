@@ -30,7 +30,7 @@ export function Navbar() {
     >
       <Link className="brand-mark" href="/">
         <span>GA</span>
-        <strong>Ghulam Ashraf</strong>
+        <strong>Ghulam <em>Ashraf</em></strong>
       </Link>
       <div className="desktop-nav">
         {navItems.map((item) =>
@@ -60,12 +60,14 @@ export function Navbar() {
       <button
         className="icon-button mobile-toggle"
         aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-navigation"
         onClick={() => setMenuOpen((open) => !open)}
       >
         {menuOpen ? <X size={20} /> : <Menu size={20} />}
       </button>
       {menuOpen && (
-        <motion.div className="mobile-menu" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.div id="mobile-navigation" className="mobile-menu" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
           {navItems.map((item) => (
             <Link className={isActive(item) ? "active-link" : ""} onClick={() => setMenuOpen(false)} href={routeFor(item)} key={item}>
               {item}

@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { assertPermission } from "@/lib/permissions";
 import { parseArticleInput } from "@/lib/validations";
+import { errorResponse } from "@/lib/http";
 
 type ArticleRouteProps = {
   params: Promise<{
@@ -26,6 +27,7 @@ export async function GET(_request: Request, props: ArticleRouteProps) {
     const article = await prisma.article.findUnique({
       where: {
         id: parseId(id),
+        status: "PUBLISHED",
       },
       include: {
         category: true,
@@ -45,7 +47,7 @@ export async function GET(_request: Request, props: ArticleRouteProps) {
 
     return NextResponse.json(article);
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid request" }, { status: 400 });
+    return errorResponse(error);
   }
 }
 
@@ -70,7 +72,7 @@ export async function PATCH(request: Request, props: ArticleRouteProps) {
 
     return NextResponse.json(article);
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid request" }, { status: 400 });
+    return errorResponse(error);
   }
 }
 
@@ -88,6 +90,6 @@ export async function DELETE(_request: Request, props: ArticleRouteProps) {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid request" }, { status: 400 });
+    return errorResponse(error);
   }
 }

@@ -6,9 +6,9 @@ import { milestones } from "@/lib/site-content";
 
 export function JourneySection() {
   return (
-    <AnimatedSection eyebrow="Professional Journey" title="Milestones shaped by education, service, and contribution.">
+    <AnimatedSection eyebrow="Selected experience" title="A career grounded in learning and service.">
       <div className="timeline">
-        {milestones.map((milestone, index) => (
+        {milestones.slice(0, 3).map((milestone, index) => (
           <motion.div
             className="timeline-item"
             initial="hidden"

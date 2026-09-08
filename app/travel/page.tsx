@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { SiteFrame } from "@/components/layout/SiteFrame";
+
+export const metadata: Metadata = {
+  title: "Travel",
+  description: "Reflective journeys through places, culture, memory, and personal observation.",
+};
 
 export default function TravelPage() {
   return (
