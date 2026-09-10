@@ -1,18 +1,25 @@
 const stats = [
-  ["Articles", "Manage drafts, published essays, and archives"],
-  ["Categories", "Organize education, politics, technology, Islam, and travel"],
-  ["Media", "Upload validated website images and galleries"],
-  ["Settings", "Control SEO, users, and site configuration"],
+  ["Articles", "12", "Draft, schedule, and maintain the editorial archive"],
+  ["Categories", "06", "Keep public topics clear, balanced, and discoverable"],
+  ["Media", "03", "Prepare interviews, press links, and image galleries"],
+  ["Settings", "Live", "Review SEO, users, permissions, and site configuration"],
 ];
 
 export default function AdminDashboardPage() {
   return (
     <section className="admin-page">
-      <span className="eyebrow">Dashboard</span>
-      <h1>Website management hub.</h1>
+      <div className="admin-page-header">
+        <div>
+          <span className="eyebrow"><i /> Dashboard</span>
+          <h1>Website management hub.</h1>
+          <p>Quickly review the editorial system, content areas, and publishing tools from one focused workspace.</p>
+        </div>
+        <a className="primary-button" href="/admin/articles">New Article</a>
+      </div>
       <div className="admin-card-grid">
-        {stats.map(([title, body]) => (
+        {stats.map(([title, value, body]) => (
           <article className="admin-card" key={title}>
+            <strong>{value}</strong>
             <h2>{title}</h2>
             <p>{body}</p>
           </article>

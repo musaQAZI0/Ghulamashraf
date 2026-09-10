@@ -11,8 +11,9 @@ export default function ContactPage() {
   return (
     <SiteFrame>
       <section className="page-hero compact-page-hero">
-        <span className="eyebrow">Contact</span>
+        <span className="eyebrow"><i /> Contact</span>
         <h1>Invite a conversation or collaboration.</h1>
+        <p>Use the form for speaking invitations, media enquiries, educational collaboration, or thoughtful correspondence.</p>
       </section>
       <ContactSection />
     </SiteFrame>
