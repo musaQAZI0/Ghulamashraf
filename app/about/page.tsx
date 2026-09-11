@@ -73,7 +73,8 @@ export default function AboutPage() {
   return (
     <SiteFrame>
       <main className="about-page">
-        <section className="about-hero">
+        <div className="about-content-container">
+          <section className="about-hero">
           <div className="about-hero-copy">
             <span className="eyebrow"><i /> About the author</span>
             <h1>Science, faith, service, and a life devoted to <em>learning.</em></h1>
@@ -106,7 +107,7 @@ export default function AboutPage() {
           </figure>
         </section>
 
-        <section className="about-facts" aria-label="Profile highlights">
+          <section className="about-facts" aria-label="Profile highlights">
           {facts.map((fact) => (
             <div key={fact.label}>
               <strong>{fact.value}</strong>
@@ -115,7 +116,7 @@ export default function AboutPage() {
           ))}
         </section>
 
-        <section className="about-biography" id="biography">
+          <section className="about-biography" id="biography">
           <div className="about-section-heading">
             <span className="eyebrow"><i /> Biography</span>
             <h2>A life shaped by two traditions and one enduring purpose.</h2>
@@ -133,7 +134,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="about-journey">
+          <section className="about-journey">
           <div className="about-section-heading about-section-heading-row">
             <div>
               <span className="eyebrow"><i /> The journey</span>
@@ -152,7 +153,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="about-credentials">
+          <section className="about-credentials">
           <div className="about-credential-column">
             <span className="eyebrow"><i /> Education</span>
             <h2>Academic foundation</h2>
@@ -170,7 +171,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="about-values">
+          <section className="about-values">
           <div className="about-section-heading about-section-heading-row">
             <div>
               <span className="eyebrow"><i /> Guiding principles</span>
@@ -189,14 +190,15 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="about-closing">
+          <section className="about-closing">
           <span className="eyebrow"><i /> Continue the conversation</span>
           <h2>Read the ideas. Share a perspective. Begin a conversation.</h2>
           <div className="cta-row">
             <Link className="primary-button" href="/articles">Explore articles <ArrowRight size={18} /></Link>
             <Link className="secondary-button" href="/contact">Get in touch <ArrowRight size={18} /></Link>
           </div>
-        </section>
+          </section>
+        </div>
       </main>
     </SiteFrame>
   );
