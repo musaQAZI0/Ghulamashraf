@@ -6,6 +6,7 @@ type ArchiveStoryProps = {
     category: string;
     title: string;
     date: string;
+    href: string;
     excerpt?: string;
     readingTime?: string;
     tone?: string;
@@ -17,7 +18,7 @@ export function ArchiveStory({ article, featured = false }: ArchiveStoryProps) {
   return (
     <Link
       className={`archive-story ${featured ? "archive-story-featured" : ""} ${article.tone ?? "plain"}`}
-      href="/articles"
+      href={article.href}
     >
       <div className="archive-story-image" aria-hidden="true" />
       <div className="archive-story-copy">

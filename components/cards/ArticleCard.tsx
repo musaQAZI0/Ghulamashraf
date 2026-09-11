@@ -13,6 +13,7 @@ type ArticleCardProps = {
     date: string;
     readingTime: string;
     tone: string;
+    href: string;
   };
   index: number;
   featured?: boolean;
@@ -35,7 +36,7 @@ export function ArticleCard({ article, index, featured = false }: ArticleCardPro
         <p>{article.excerpt}</p>
         <div className="article-meta">
           <span>{article.date} <i aria-hidden="true" /> {article.readingTime}</span>
-          <Link href="/articles" aria-label={`Read ${article.title}`}>
+          <Link href={article.href} aria-label={`Read ${article.title}`}>
             <span>Read article</span> <ArrowRight size={16} />
           </Link>
         </div>

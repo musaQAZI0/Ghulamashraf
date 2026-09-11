@@ -3296,3 +3296,36 @@ body {
   font-size: 1rem;
   line-height: 1.7;
 }
+
+/* Database-backed article UI */
+.admin-form select {
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 253, 248, 0.92);
+  color: var(--ink);
+  padding: 0 12px;
+  font: inherit;
+}
+
+.article-featured-image {
+  position: relative;
+  overflow: hidden;
+  min-height: 360px;
+  margin: 42px 0;
+  background: var(--surface-soft);
+}
+
+.article-featured-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 620px) {
+  .article-featured-image {
+    min-height: 220px;
+    margin: 30px 0;
+  }
+}

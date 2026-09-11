@@ -1,19 +1,29 @@
 import { ArticleCard } from "@/components/cards/ArticleCard";
+import { getPublishedArticles, formatArticleDate, readingTime } from "@/lib/articles";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { featuredArticles } from "@/lib/site-content";
 
-export function FeaturedArticlesSection() {
-  if (featuredArticles.length === 0) return null;
+export async function FeaturedArticlesSection() {
+  const articles = await getPublishedArticles(3);
+
+  if (articles.length === 0) return null;
 
   return (
     <AnimatedSection eyebrow="Selected writing" title="Ideas worth sitting with.">
       <div className="featured-grid">
-        {featuredArticles.map((article, index) => (
+        {articles.map((article, index) => (
           <ArticleCard
-            article={article}
+            article={{
+              category: article.category?.name ?? "General",
+              title: article.title,
+              excerpt: article.excerpt ?? "",
+              date: formatArticleDate(article.publishedAt ?? article.createdAt),
+              readingTime: readingTime(article.content),
+              tone: "plain",
+              href: `/articles/${article.slug}`,
+            }}
             featured={index === 0}
             index={index}
-            key={article.title}
+            key={article.id}
           />
         ))}
       </div>

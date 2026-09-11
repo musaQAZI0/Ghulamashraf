@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import { ArchiveStory } from "@/components/cards/ArchiveStory";
 import { SiteFrame } from "@/components/layout/SiteFrame";
-import { articleCategories, featuredArticles, latestArticles } from "@/lib/site-content";
+import { formatArticleDate, getPublishedArticles, readingTime } from "@/lib/articles";
+import { articleCategories } from "@/lib/site-content";
 
 function categoryHref(category: string) {
   return category === "All Articles" ? "/articles" : `/articles/${category.toLowerCase().replaceAll(" ", "-")}`;
@@ -20,12 +21,9 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
   const rawQuery = (await searchParams).q;
   const query = (Array.isArray(rawQuery) ? rawQuery[0] : rawQuery)?.trim() ?? "";
   const needle = query.toLowerCase();
-  const allArticles = [
-    ...featuredArticles,
-    ...latestArticles.map((article) => ({ ...article, excerpt: "", readingTime: "", tone: "plain" })),
-  ];
-  const visibleArticles = allArticles.filter((article) =>
-    !needle || [article.category, article.title, article.excerpt].some((value) => value.toLowerCase().includes(needle)),
+  const articles = await getPublishedArticles();
+  const visibleArticles = articles.filter((article) =>
+    !needle || [article.category?.name, article.title, article.excerpt].some((value) => value?.toLowerCase().includes(needle)),
   );
 
   return (
@@ -58,7 +56,19 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
         {visibleArticles.length > 0 ? (
           <section className="articles-archive" aria-label="Article archive">
             {visibleArticles.map((article, index) => (
-              <ArchiveStory article={article} featured={!query && index === 0} key={`${article.category}-${article.title}`} />
+              <ArchiveStory
+                article={{
+                  category: article.category?.name ?? "General",
+                  title: article.title,
+                  date: formatArticleDate(article.publishedAt ?? article.createdAt),
+                  href: `/articles/${article.slug}`,
+                  excerpt: article.excerpt ?? undefined,
+                  readingTime: readingTime(article.content),
+                  tone: "plain",
+                }}
+                featured={!query && index === 0}
+                key={article.id}
+              />
             ))}
           </section>
         ) : (

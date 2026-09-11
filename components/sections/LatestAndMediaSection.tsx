@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
 import { LatestArticleRow } from "@/components/cards/LatestArticleRow";
-import { latestArticles } from "@/lib/site-content";
+import { formatArticleDate, getPublishedArticles } from "@/lib/articles";
 
-export function LatestAndMediaSection() {
+export async function LatestAndMediaSection() {
+  const latestArticles = await getPublishedArticles(4);
+
   return (
     <section className="split-section" id="media">
       <div>
@@ -13,10 +15,11 @@ export function LatestAndMediaSection() {
           <div className="latest-list">
             {latestArticles.map((article) => (
               <LatestArticleRow
-                category={article.category}
+                category={article.category?.name ?? "General"}
                 title={article.title}
-                date={article.date}
-                key={article.title}
+                date={formatArticleDate(article.publishedAt ?? article.createdAt)}
+                href={`/articles/${article.slug}`}
+                key={article.id}
               />
             ))}
           </div>
