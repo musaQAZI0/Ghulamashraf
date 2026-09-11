@@ -72,7 +72,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <SiteFrame>
-      <main className="about-page">
+      <div className="about-page">
         <div className="about-content-container">
           <section className="about-hero">
           <div className="about-hero-copy">
@@ -199,7 +199,7 @@ export default function AboutPage() {
           </div>
           </section>
         </div>
-      </main>
+      </div>
     </SiteFrame>
   );
 }

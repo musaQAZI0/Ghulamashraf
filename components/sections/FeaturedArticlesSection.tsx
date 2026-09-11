@@ -3,6 +3,8 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { featuredArticles } from "@/lib/site-content";
 
 export function FeaturedArticlesSection() {
+  if (featuredArticles.length === 0) return null;
+
   return (
     <AnimatedSection eyebrow="Selected writing" title="Ideas worth sitting with.">
       <div className="featured-grid">

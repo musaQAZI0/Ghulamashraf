@@ -9,35 +9,22 @@ export const articleCategories = [
   "All Articles",
 ];
 
-export const featuredArticles = [
-  {
-    category: "Education",
-    title: "Reimagining Learning for a Generation That Reads the World Differently",
-    excerpt:
-      "A reflection on curiosity, discipline, and the teacher's role in shaping confident, ethical learners.",
-    date: "Aug 8, 2026",
-    readingTime: "6 min read",
-    tone: "scholar",
-  },
-  {
-    category: "Technology",
-    title: "Human Judgment in the Age of Fast Machines",
-    excerpt:
-      "Why intelligent tools still require patient minds, civic responsibility, and moral clarity.",
-    date: "Jul 28, 2026",
-    readingTime: "5 min read",
-    tone: "signal",
-  },
-  {
-    category: "Islam",
-    title: "Knowledge, Character, and the Public Good",
-    excerpt:
-      "On faith as a source of learning, service, humility, and contribution to society.",
-    date: "Jul 14, 2026",
-    readingTime: "4 min read",
-    tone: "faith",
-  },
-];
+type FeaturedArticle = {
+  category: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  readingTime: string;
+  tone: string;
+};
+
+type LatestArticle = {
+  category: string;
+  title: string;
+  date: string;
+};
+
+export const featuredArticles: FeaturedArticle[] = [];
 
 export const topics = [
   {
@@ -85,25 +72,4 @@ export const milestones = [
   },
 ];
 
-export const latestArticles = [
-  {
-    category: "Politics",
-    title: "A More Civil Public Square",
-    date: "Aug 10, 2026",
-  },
-  {
-    category: "General",
-    title: "The Discipline of Hope",
-    date: "Aug 4, 2026",
-  },
-  {
-    category: "Travel",
-    title: "Notes from a Quiet Journey",
-    date: "Jul 30, 2026",
-  },
-  {
-    category: "Education",
-    title: "What Great Classrooms Remember",
-    date: "Jul 21, 2026",
-  },
-];
+export const latestArticles: LatestArticle[] = [];

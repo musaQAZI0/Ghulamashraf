@@ -22,7 +22,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
   const needle = query.toLowerCase();
   const allArticles = [
     ...featuredArticles,
-    ...latestArticles.map((article) => ({ ...article, excerpt: "A considered note from the wider archive.", readingTime: "4 min read", tone: "plain" })),
+    ...latestArticles.map((article) => ({ ...article, excerpt: "", readingTime: "", tone: "plain" })),
   ];
   const visibleArticles = allArticles.filter((article) =>
     !needle || [article.category, article.title, article.excerpt].some((value) => value.toLowerCase().includes(needle)),
@@ -53,7 +53,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
           ))}
         </nav>
 
-        {query && <p className="articles-result-count">{visibleArticles.length} results for “{query}”</p>}
+        {query && <p className="articles-result-count">{visibleArticles.length} results for &quot;{query}&quot;</p>}
 
         {visibleArticles.length > 0 ? (
           <section className="articles-archive" aria-label="Article archive">
@@ -63,9 +63,9 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
           </section>
         ) : (
           <section className="archive-empty">
-            <h2>No articles found.</h2>
-            <p>Try a broader topic or return to the complete archive.</p>
-            <Link className="secondary-button" href="/articles">Clear search</Link>
+            <h2>{query ? "No articles found." : "No articles published yet."}</h2>
+            <p>{query ? "Try a broader topic or return to the complete archive." : "The archive will appear here once the first article is published."}</p>
+            {query && <Link className="secondary-button" href="/articles">Clear search</Link>}
           </section>
         )}
       </main>

@@ -35,7 +35,7 @@ export function ArticleCard({ article, index, featured = false }: ArticleCardPro
         <p>{article.excerpt}</p>
         <div className="article-meta">
           <span>{article.date} <i aria-hidden="true" /> {article.readingTime}</span>
-          <Link href="/articles/sample-article" aria-label={`Read ${article.title}`}>
+          <Link href="/articles" aria-label={`Read ${article.title}`}>
             <span>Read article</span> <ArrowRight size={16} />
           </Link>
         </div>

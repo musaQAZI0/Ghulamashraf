@@ -17,7 +17,7 @@ export function ArchiveStory({ article, featured = false }: ArchiveStoryProps) {
   return (
     <Link
       className={`archive-story ${featured ? "archive-story-featured" : ""} ${article.tone ?? "plain"}`}
-      href="/articles/sample-article"
+      href="/articles"
     >
       <div className="archive-story-image" aria-hidden="true" />
       <div className="archive-story-copy">
@@ -25,7 +25,7 @@ export function ArchiveStory({ article, featured = false }: ArchiveStoryProps) {
         <h2>{article.title}</h2>
         {article.excerpt && <p>{article.excerpt}</p>}
         <div className="archive-story-meta">
-          <span>{article.date}{article.readingTime ? ` · ${article.readingTime}` : ""}</span>
+          <span>{article.date}{article.readingTime ? ` - ${article.readingTime}` : ""}</span>
           <ArrowUpRight size={18} />
         </div>
       </div>

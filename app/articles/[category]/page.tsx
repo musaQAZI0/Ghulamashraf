@@ -16,7 +16,7 @@ export default async function CategoryPage(props: PageProps<"/articles/[category
 
   const articles = [
     ...featuredArticles,
-    ...latestArticles.map((article) => ({ ...article, excerpt: "A considered note from the wider archive.", readingTime: "4 min read", tone: "plain" })),
+    ...latestArticles.map((article) => ({ ...article, excerpt: "", readingTime: "", tone: "plain" })),
   ].filter((article) => article.category.toLowerCase() === title.toLowerCase());
 
   return (
