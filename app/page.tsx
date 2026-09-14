@@ -8,6 +8,8 @@ import { LatestAndMediaSection } from "@/components/sections/LatestAndMediaSecti
 import { QuoteSection } from "@/components/sections/QuoteSection";
 import { TopicsSection } from "@/components/sections/TopicsSection";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <SiteFrame>

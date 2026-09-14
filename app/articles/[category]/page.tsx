@@ -12,6 +12,7 @@ import {
 } from "@/lib/articles";
 import { articleCategories } from "@/lib/site-content";
 
+export const dynamic = "force-dynamic";
 function categoryHref(category: string) {
   return category === "All Articles" ? "/articles" : `/articles/${category.toLowerCase().replaceAll(" ", "-")}`;
 }
