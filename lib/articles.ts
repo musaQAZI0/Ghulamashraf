@@ -16,70 +16,85 @@ export function formatArticleDate(date: Date | null) {
 }
 
 export async function getPublishedArticles(take?: number) {
-  return prisma.article.findMany({
-    where: {
-      status: "PUBLISHED",
-    },
-    include: {
-      category: true,
-      author: {
-        select: {
-          name: true,
+  try {
+    return await prisma.article.findMany({
+      where: {
+        status: "PUBLISHED",
+      },
+      include: {
+        category: true,
+        author: {
+          select: {
+            name: true,
+          },
         },
       },
-    },
-    orderBy: [
-      { publishedAt: "desc" },
-      { createdAt: "desc" },
-    ],
-    take,
-  });
+      orderBy: [
+        { publishedAt: "desc" },
+        { createdAt: "desc" },
+      ],
+      take,
+    });
+  } catch (error) {
+    console.error("Unable to load published articles", error);
+    return [];
+  }
 }
 
 export async function getPublishedArticleBySlug(slug: string) {
-  return prisma.article.findFirst({
-    where: {
-      slug,
-      status: "PUBLISHED",
-    },
-    include: {
-      category: true,
-      author: {
-        select: {
-          name: true,
+  try {
+    return await prisma.article.findFirst({
+      where: {
+        slug,
+        status: "PUBLISHED",
+      },
+      include: {
+        category: true,
+        author: {
+          select: {
+            name: true,
+          },
         },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.error(`Unable to load article: ${slug}`, error);
+    return null;
+  }
 }
 
 export async function getPublishedArticlesByCategorySlug(slug: string) {
-  const category = await prisma.category.findUnique({
-    where: { slug },
-  });
+  try {
+    const category = await prisma.category.findUnique({
+      where: { slug },
+    });
 
-  if (!category) {
-    return null;
-  }
+    if (!category) {
+      return null;
+    }
 
-  const articles = await prisma.article.findMany({
-    where: {
-      categoryId: category.id,
-      status: "PUBLISHED",
-    },
-    include: {
-      category: true,
-      author: {
-        select: {
-          name: true,
+    const articles = await prisma.article.findMany({
+      where: {
+        categoryId: category.id,
+        status: "PUBLISHED",
+      },
+      include: {
+        category: true,
+        author: {
+          select: {
+            name: true,
+          },
         },
       },
-    },
-    orderBy: [
-      { publishedAt: "desc" },
-      { createdAt: "desc" },
-    ],
-  });
+      orderBy: [
+        { publishedAt: "desc" },
+        { createdAt: "desc" },
+      ],
+    });
 
-  return { category, articles };
+    return { category, articles };
+  } catch (error) {
+    console.error(`Unable to load category: ${slug}`, error);
+    return null;
+  }
 }
