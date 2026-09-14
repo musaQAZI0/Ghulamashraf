@@ -13,7 +13,7 @@ export async function FeaturedArticlesSection() {
         {articles.map((article, index) => (
           <ArticleCard
             article={{
-              category: article.category?.name ?? "General",
+              category: article.category?.name ?? "Uncategorized",
               title: article.title,
               excerpt: article.excerpt ?? "",
               date: formatArticleDate(article.publishedAt ?? article.createdAt),

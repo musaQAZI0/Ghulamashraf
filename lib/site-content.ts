@@ -1,11 +1,10 @@
 export const navItems = ["Home", "About", "Articles", "Media", "Travel", "Contact"];
 
 export const articleCategories = [
+  "AI",
   "Education",
-  "Politics",
-  "Technology",
-  "Islam",
-  "General",
+  "Islamic Economics",
+  "Science Innovations",
   "All Articles",
 ];
 
@@ -28,28 +27,20 @@ export const featuredArticles: FeaturedArticle[] = [];
 
 export const topics = [
   {
+    title: "AI",
+    description: "Artificial intelligence, ethics, tools, and society",
+  },
+  {
     title: "Education",
-    description: "Pedagogy, learning culture, institutions",
+    description: "Learning culture, institutions, pedagogy, and reform",
   },
   {
-    title: "Politics",
-    description: "Civic life, policy, public responsibility",
+    title: "Islamic Economics",
+    description: "Finance, justice, markets, and ethical prosperity",
   },
   {
-    title: "Technology",
-    description: "Digital society, ethics, future skills",
-  },
-  {
-    title: "Islam",
-    description: "Faith, knowledge, character, service",
-  },
-  {
-    title: "General",
-    description: "Essays, commentary, lived observations",
-  },
-  {
-    title: "Travel & Leisure",
-    description: "Places, culture, reflective journeys",
+    title: "Science Innovations",
+    description: "Research, discovery, materials, health, and technology",
   },
 ];
 

@@ -15,7 +15,7 @@ export async function LatestAndMediaSection() {
           <div className="latest-list">
             {latestArticles.map((article) => (
               <LatestArticleRow
-                category={article.category?.name ?? "General"}
+                category={article.category?.name ?? "Uncategorized"}
                 title={article.title}
                 date={formatArticleDate(article.publishedAt ?? article.createdAt)}
                 href={`/articles/${article.slug}`}

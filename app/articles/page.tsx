@@ -12,7 +12,7 @@ function categoryHref(category: string) {
 
 export const metadata: Metadata = {
   title: "Articles",
-  description: "Essays on education, politics, technology, Islam, travel, and public life.",
+  description: "Essays on AI, education, Islamic economics, science innovations, and public life.",
 };
 
 type ArticlesPageProps = { searchParams: Promise<{ q?: string | string[] }> };
@@ -33,7 +33,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
           <div>
             <span className="eyebrow"><i /> Essays & reflections</span>
             <h1>Ideas for thoughtful <em>public life.</em></h1>
-            <p>Writing on education, faith, technology, culture, travel, and the responsibilities we share.</p>
+            <p>Writing on AI, education, Islamic economics, science innovations, and the responsibilities we share.</p>
           </div>
           <form className="articles-search" action="/articles" role="search">
             <label htmlFor="article-search">Search the archive</label>
@@ -58,7 +58,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
             {visibleArticles.map((article, index) => (
               <ArchiveStory
                 article={{
-                  category: article.category?.name ?? "General",
+                  category: article.category?.name ?? "Uncategorized",
                   title: article.title,
                   date: formatArticleDate(article.publishedAt ?? article.createdAt),
                   href: `/articles/${article.slug}`,
