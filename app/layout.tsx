@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ghulamashraf.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ghulamashraf.co.uk"),
   title: {
     default: "Dr. Ghulam Sarwar Ashraf",
     template: "%s | Dr. Ghulam Sarwar Ashraf",
